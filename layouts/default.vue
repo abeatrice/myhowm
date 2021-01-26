@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="text-white bg-gray-800 p-5">
+  <div class="min-h-screen bg-gray-900 text-white">
+    <div class="p-5 shadow-b shadow-lg">
       <nuxt-link to="/">Home</nuxt-link>
       <nuxt-link to="/recipes" class="ml-5">Recipes</nuxt-link>
     </div>

@@ -1,4 +1,9 @@
 export default {
+  // Environment vars
+  env: {
+    apiBaseURL: process.env.API_BASE_URL || 'http://127.0.0.1:3000',
+  },
+
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
