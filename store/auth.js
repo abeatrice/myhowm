@@ -1,10 +1,10 @@
 import axios from '@nuxtjs/axios'
 
-const state = {
+export const state = () => ({
     user: JSON.parse(localStorage.getItem('user')) || null
-}
+})
 
-const getters = {
+export const getters = {
     authToken(state) {
         return state.user.token || null
     },
@@ -19,10 +19,10 @@ const getters = {
     }
 }
 
-const actions = {
+export const actions = {
     register({commit}, form) {
         return new Promise((resolve, reject) => {
-            axios.post('http://127.0.0.1:3000/users/register', {
+            this.$axios.$post('http://127.0.0.1:3000/users/register', {
                 UserName: form.UserName,
                 Email: form.Email,
                 Password: form.Password
@@ -39,7 +39,7 @@ const actions = {
     },
     login({commit}, form) {
         return new Promise((resolve, reject) => {
-            axios.post('http://127.0.0.1:3000/users/login', {
+            this.$axios.$post('http://127.0.0.1:3000/users/login', {
                 UserName: form.UserName,
                 Password: form.Password
             })
@@ -52,17 +52,21 @@ const actions = {
                 reject(error)
             })
         })
+    },
+    logout(context) {
+        return new Promise((resolve, reject) => {
+            this.$axios.$post('http://127.0.0.1:3000/users/logout')
+            .then(response => {
+                resolve(response)
+            })
+            .catch(error => {
+                reject(error)
+            })
+        })
     }
 }
 
-const mutations = {
+export const mutations = {
     loggedIn: (state, user) => state.user = user,
     loggedOut: (state) => state.user = null
-}
-
-export default {
-    state,
-    getters,
-    actions,
-    mutations
 }

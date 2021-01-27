@@ -4,6 +4,10 @@ export default {
     apiBaseURL: process.env.API_BASE_URL || 'http://127.0.0.1:3000',
   },
 
+  router: {
+    middleware: 'auth'
+  },
+
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
@@ -12,14 +16,14 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'myhowm',
+    title: 'MyHowm - It\'s cozy in here',
     htmlAttrs: {
       lang: 'en'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: 'Make your home cozy as can be' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
