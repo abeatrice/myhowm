@@ -54,12 +54,17 @@ export const actions = {
         })
     },
     logout(context) {
+        this.$axios.setToken(context.state.user.Token, 'Bearer')
         return new Promise((resolve, reject) => {
             this.$axios.$post('http://127.0.0.1:3000/users/logout')
             .then(response => {
+                localStorage.removeItem('user')
+                context.commit('loggedOut')
                 resolve(response)
             })
             .catch(error => {
+                localStorage.removeItem('user');
+                context.commit('loggedOut');
                 reject(error)
             })
         })

@@ -1,7 +1,8 @@
 export default function ({route, redirect, store}) {
-    // Redirect to login if not auth
     const isAuthenticated = store.state.auth.user ? true : false
-    if(!isAuthenticated) {
+
+    // Redirect to login if not auth
+    if(!isAuthenticated && (route.name !== 'login' && route.name !== 'register')) {
         redirect({name:'login'})
     }
 
