@@ -5,7 +5,7 @@ export default {
   },
 
   router: {
-    middleware: 'auth'
+    middleware: ['auth']
   },
 
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -51,7 +51,27 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
   ],
+
+  auth: {
+    strategies: {
+      local: {
+        token: {
+          property: 'data.Token',
+        },
+        user: {
+          property: 'data',
+          autoFetch: false
+        },
+        endpoints: {
+          login: { url: 'http://127.0.0.1:3000/users/login', method: 'post' },
+          logout: { url: 'http://127.0.0.1:3000/users/logout', method: 'post' },
+          user: false
+        }
+      }
+    }
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},

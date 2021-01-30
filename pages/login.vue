@@ -43,8 +43,8 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
 export default {
+  auth: 'guest',
   layout: 'auth',
   data() {
     return {
@@ -65,23 +65,13 @@ export default {
     this.$refs.UserName.focus()
   },
   methods: {
-    ...mapActions({
-      login: 'auth/login'
-    }),
     clearError() {
       this.error = ''
     },
-    onSubmit() {
-      this.loading = true
-      this.login(this.form)
-      .then(() => {
-        this.$router.push('/')
-      })
-      .catch(error => {
-        this.loading = false
-        this.error = error.response.message
-        this.form.password = ''
-      })
+    async onSubmit() {
+      await this.$auth.login({data: this.form})
+        .then(response => this.$auth.setUser(response.data.data))
+        .catch(error => console.log(error))
     }
   }
 }

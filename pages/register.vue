@@ -79,6 +79,7 @@
 import {mapActions} from 'vuex'
 
 export default {
+  auth: 'guest',
   layout: 'auth',
   data() {
     return {
