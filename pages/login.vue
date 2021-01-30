@@ -10,7 +10,7 @@
           :disabled="loading"
           id="UserName"
           ref="UserName"
-          placeholder="homebody23"
+          placeholder="howmBody23"
           required
         >
       </div>
@@ -35,6 +35,10 @@
         Login
       </button>
     </form>
+    <div>
+      <p>Don't have an account?</p>
+      <nuxt-link to="/register">Sign up</nuxt-link>
+    </div>
   </div>
 </template>
 
@@ -71,7 +75,6 @@ export default {
       this.loading = true
       this.login(this.form)
       .then(() => {
-        this.loading = false
         this.$router.push('/')
       })
       .catch(error => {
